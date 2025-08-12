@@ -52,7 +52,10 @@ function findWinner(humanChoice, computerChoice) {
   return winner;
 }
 
-function playRound(humanChoice, computerChoice) {
+function playRound() {
+  const humanChoice = getHumanChoice();
+  const computerChoice = getComputerChoice();
+
   const winner = findWinner(humanChoice, computerChoice);
   const msg = winner ? `Congrats. ${winner} is the winner!` : "It's a draw.";
   console.log(`(You) ${humanChoice} vs ${computerChoice} (Computer)`);
@@ -60,7 +63,13 @@ function playRound(humanChoice, computerChoice) {
   console.log(`Score -  (You) ${humanScore}:${computerScore} (computer)`);
 }
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
+function playGame() {
+  playRound();
+  playRound();
+  playRound();
+  playRound();
+  playRound();
+}
 
-playRound(humanChoice, computerChoice);
+
+playGame();
