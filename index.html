@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./script.js" defer></script>
     <title>Rock, paper, scissors!</title>
+    <style>
+      .board > *{
+        margin: 0;
+        padding: 0;
+      }
+
+      .board {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        width: 200px;
+        padding: 10px 20px;
+        border-radius: 0.3em;
+      }
+    </style>
   </head>
   <body>
     <h1>Click one of the buttons below to play!</h1>
@@ -12,6 +26,10 @@
       <button class="btn btn--rock" data-choice="rock">Rock</button>
       <button class="btn btn--paper" data-choice="paper">Paper</button>
       <button class="btn btn--scissors" data-choice="scissors">Scissors</button>
+    </div>
+    <div class="board">
+      <p>Your score: <span class="human-score"></span></p>
+      <p>Computer's score: <span class="computer-score"></span></p>
     </div>
   </body>
 </html>
