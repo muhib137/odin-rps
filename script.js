@@ -63,13 +63,3 @@ function playRound() {
   console.log(`Score -  (You) ${humanScore}:${computerScore} (computer)`);
 }
 
-function playGame() {
-  playRound();
-  playRound();
-  playRound();
-  playRound();
-  playRound();
-}
-
-
-playGame();
