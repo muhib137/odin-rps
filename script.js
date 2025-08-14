@@ -4,9 +4,14 @@ const SCISSORS = "scissors";
 const PLAYER_HUMAN = "human";
 const PLAYER_COMPUTER = "computer";
 
+const buttons = document.querySelectorAll(".btn");
+const humanScoreBoard = document.querySelector(".human-score");
+const computerScoreBoard = document.querySelector(".computer-score");
+const bodyEl = document.querySelector("body");
+const board = document.querySelector(".board");
+
 let computerScore = 0,
   humanScore = 0;
-
 function getChoice(index) {
   switch (index) {
     case 0:
@@ -52,14 +57,29 @@ function findWinner(humanChoice, computerChoice) {
   return winner;
 }
 
-function playRound() {
-  const humanChoice = getHumanChoice();
+function playRound(humanChoice) {
   const computerChoice = getComputerChoice();
-
   const winner = findWinner(humanChoice, computerChoice);
-  const msg = winner ? `Congrats. ${winner} is the winner!` : "It's a draw.";
-  console.log(`(You) ${humanChoice} vs ${computerChoice} (Computer)`);
-  console.log(msg);
-  console.log(`Score -  (You) ${humanScore}:${computerScore} (computer)`);
+
+  const choices = `<p>(You) ${humanChoice} vs ${computerChoice} (Computer) </p>`;
+  board.insertAdjacentHTML("afterend", choices);
+
+  humanScoreBoard.textContent = humanScore;
+  computerScoreBoard.textContent = computerScore;
 }
 
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    playRound(e.target.dataset.choice);
+    if (humanScore >= 5 || computerScore >= 5) {
+      if (humanScore > computerScore) {
+        board.classList.add("won");
+      } else {
+        board.classList.add("lost");
+      }
+      buttons.forEach((button) => {
+        button.setAttribute("disabled", true);
+      })
+    }
+  });
+});
